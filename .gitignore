@@ -1,6 +1,8 @@
 Library/
 UserSettings/
 .vscode/
+Logs/
+obj/
 *.sln
 *.csproj
 *.meta
