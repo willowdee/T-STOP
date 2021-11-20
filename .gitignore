@@ -3,6 +3,7 @@ UserSettings/
 .vscode/
 Logs/
 obj/
+Temp/
 *.sln
 *.csproj
 *.meta
