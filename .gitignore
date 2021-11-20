@@ -1,0 +1,6 @@
+Library/
+UserSettings/
+.vscode/
+*.sln
+*.csproj
+*.meta
