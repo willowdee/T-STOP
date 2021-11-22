@@ -8,6 +8,7 @@ public class FSTOP_Fan : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     // Update is called once per frame
@@ -18,13 +19,12 @@ public class FSTOP_Fan : MonoBehaviour
         RaycastHit[] hits = Physics.RaycastAll(transform.position, fanDirection, 100);
         foreach (RaycastHit hit in hits)
         {
-            print(hit.transform.name);
             if (hit.collider.tag == "Capturable")
             {
                 hit.rigidbody.AddForce(fanDirection * 0.3f, ForceMode.VelocityChange);
             }
             // if its the player, we need to add fanDirection * 15 instead of 10
-            if (hit.collider.tag == "Player")
+            if (hit.collider.gameObject.layer == 3)
             {
                 hit.rigidbody.AddForce(fanDirection * 0.3f, ForceMode.VelocityChange);
             }

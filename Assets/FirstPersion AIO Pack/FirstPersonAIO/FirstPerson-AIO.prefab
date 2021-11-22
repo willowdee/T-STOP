@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4204582120663750}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HeadJoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4288335847994348}
   m_Father: {fileID: 4448068258976056}
@@ -43,7 +44,9 @@ GameObject:
   - component: {fileID: 20724644957976244}
   - component: {fileID: 81419976148993170}
   - component: {fileID: 124044488792268592}
-  m_Layer: 0
+  - component: {fileID: 2111914058}
+  - component: {fileID: 2111914059}
+  m_Layer: 3
   m_Name: Player Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -60,6 +63,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4204582120663750}
   m_RootOrder: 0
@@ -123,6 +127,42 @@ Behaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264833946912854}
   m_Enabled: 1
+--- !u!114 &2111914058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264833946912854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79898e7c55dbd744fad52bdc808da977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 15
+  Distance: 2.5
+  GrabDistance: 5
+--- !u!114 &2111914059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264833946912854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc9b2c16cbe9357459dcce4ae3de6148, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  captured: {fileID: 0}
+  captureMode: 0
+  soundSource: {fileID: 82712217391461128}
+  captureSound: {fileID: 8300000, guid: db82aecae35afa94d9fa62d4bb7bfd1a, type: 3}
+  releaseSound: {fileID: 8300000, guid: 44b443ec8c703b24fa09e3d4a75e44ec, type: 3}
+  maxPlacementDistance: 45
+  maxCaptureDistance: 45
+  resetScaleMin: {x: 0.2, y: 0.2, z: 0.2}
+  resetScaleMax: {x: 10.2, y: 10.2, z: 10.2}
 --- !u!1 &1743903104223250
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +176,7 @@ GameObject:
   - component: {fileID: 54587624234064098}
   - component: {fileID: 136239539305442568}
   - component: {fileID: 114051214696948948}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirstPerson-AIO
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -153,6 +193,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -1, z: 0, w: -0.0000001872535}
   m_LocalPosition: {x: 0, y: 1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4204582120663750}
   m_Father: {fileID: 0}
@@ -177,7 +218,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -268,7 +309,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 2
-  m_Constraints: 112
+  m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!136 &136239539305442568
 CapsuleCollider:
@@ -296,28 +337,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a5ad4f9ffb154ca7813fdad11017a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerPauseState: 0
   enableCameraMovement: 1
   mouseInputInversion: 0
-  verticalRotationRange: 170
+  cameraInputMethod: 0
+  verticalRotationRange: 180
   mouseSensitivity: 10
-  fOVToMouseSensitivity: 1
-  cameraSmoothing: 5
+  fOVToMouseSensitivity: 0
+  cameraSmoothing: 1
   lockAndHideCursor: 1
   playerCamera: {fileID: 20724644957976244}
-  enableCameraShake: 1
+  enableCameraShake: 0
   autoCrosshair: 1
   drawStaminaMeter: 1
-  Crosshair: {fileID: 21300000, guid: 7fa7752f7f2a3fc4fbc2bcaea5671e2d, type: 3}
+  Crosshair: {fileID: 21300000, guid: e39f4716e65a0a643b094931a7f13aa4, type: 3}
   targetAngles: {x: 0, y: 0, z: 0}
   playerCanMove: 1
   walkByDefault: 1
-  walkSpeed: 4
-  sprintKey: 304
+  walkSpeed: 5
+  sprintKey: 0
   sprintSpeed: 8
   jumpPower: 5
   canJump: 1
   canHoldJump: 0
-  useStamina: 1
+  useStamina: 0
   staminaDepletionSpeed: 2
   staminaLevel: 50
   speed: 0
@@ -333,13 +376,13 @@ MonoBehaviour:
     gravityMultiplier: 1
     zeroFrictionMaterial: {fileID: 0}
     highFrictionMaterial: {fileID: 0}
-    maxSlopeAngle: 70
+    maxSlopeAngle: 55
     maxWallShear: 89
-    maxStepHeight: 0.2
+    maxStepHeight: 0
     curntGroundNormal: {x: 0, y: 0, z: 0}
     moveDirRef: {x: 0, y: 0}
     lastKnownSlopeAngle: 0
-    FOVKickAmount: 2.5
+    FOVKickAmount: 0
     changeTime: 0.75
     fovRef: 0
   isCrouching: 0
@@ -348,19 +391,21 @@ MonoBehaviour:
   head: {fileID: 4204582120663750}
   snapHeadjointToCapsul: 1
   headbobFrequency: 1.5
-  headbobSwayAngle: 2.5
-  headbobHeight: 1
-  headbobSideMovement: 0.5
-  jumpLandIntensity: 3
+  headbobSwayAngle: 0
+  headbobHeight: 0
+  headbobSideMovement: 0
+  jumpLandIntensity: 0
   enableAudioSFX: 1
   Volume: 5
-  jumpSound: {fileID: 0}
-  landSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 884f1d42e7a5e98478d53bfc4b98aada, type: 3}
+  landSound: {fileID: 8300000, guid: 8bbd5871530ec774ebef27eaea21e860, type: 3}
   footStepSounds:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  fsmode: 1
+  - {fileID: 8300000, guid: 73f938638097f8042ad7842aa5b04ac5, type: 3}
+  - {fileID: 8300000, guid: a2cf935dcad44514894bf910c443d507, type: 3}
+  - {fileID: 8300000, guid: 0b36ebf0a6b6c234c89643b5bb83ec59, type: 3}
+  - {fileID: 8300000, guid: f556827165c098547be10e15323aa490, type: 3}
+  - {fileID: 8300000, guid: 5a1e73ebb16d027419df7efded694efa, type: 3}
+  fsmode: 0
   dynamicFootstep:
     materialMode: 0
     woodPhysMat: []

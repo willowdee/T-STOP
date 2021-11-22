@@ -82,7 +82,7 @@ public class PhysicsPickup : MonoBehaviour
     {
         //raycast to find an item
         RaycastHit hitInfo;
-        Physics.Raycast(transform.position, transform.forward, out hitInfo, GrabDistance);
+        Physics.Raycast(transform.position, transform.forward, out hitInfo, GrabDistance, 1);
 
         if(hitInfo.rigidbody == null)
             return;

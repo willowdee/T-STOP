@@ -68,7 +68,7 @@ public class FSTOP_Camera : MonoBehaviour
                 {
                     if (hit.transform.tag == "Capturable")
                     {
-                        print("We captured " + hit.transform.gameObject.name);
+                        print("We captured " + hit.transform.gameObject.name + "!");
                         // Now capture the object
                         GameObject capObject = hit.transform.gameObject;
                         // Make it transparent
@@ -114,7 +114,7 @@ public class FSTOP_Camera : MonoBehaviour
             }
 
 
-            if (Physics.Raycast(transform.position, fwd, out hit, maxPlacementDistance))
+            if (Physics.Raycast(transform.position, fwd, out hit, maxPlacementDistance, 1))
             {
                 /*
                 if(captured.activeSelf == false)
@@ -122,26 +122,30 @@ public class FSTOP_Camera : MonoBehaviour
                     captured.SetActive(true);
                 }
                 */
-                if(hit.normal.y < 0.5)
+                if(hit.transform.gameObject.tag != "Capturable")
                 {
-                    captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.x;
+                    if(hit.normal.y < 0.5)
+                    {
+                        captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.x;
+                    }
+
+                    if(hit.normal.z < -0.5 && !(hit.normal.z > 0.5))
+                    {
+                        captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.z;
+                    }
+                    if(hit.normal.z > 0.5)
+                    {
+                        captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.z;
+                    }
+
+                    if(!(hit.normal.y < 0.5) && !(hit.normal.z < -0.5) && !(hit.normal.z > 0.5))
+                    {
+                        captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.y;
+                    }
+
+                    captured.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                 }
 
-                if(hit.normal.z < -0.5 && !(hit.normal.z > 0.5))
-                {
-                    captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.z;
-                }
-                if(hit.normal.z > 0.5)
-                {
-                    captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.z;
-                }
-
-                if(!(hit.normal.y < 0.5) && !(hit.normal.z < -0.5) && !(hit.normal.z > 0.5))
-                {
-                    captured.transform.position = hit.point + hit.normal * captured.GetComponent < Collider > ().bounds.extents.y;
-                }
-
-                captured.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
             }
             /*
             else
@@ -151,6 +155,7 @@ public class FSTOP_Camera : MonoBehaviour
             */
             if(Input.GetMouseButtonUp(0))
             {
+                print("We placed " + captured.name + "!");
                 //Enable the object first
                 captured.SetActive(true);
                 // Make it opaque

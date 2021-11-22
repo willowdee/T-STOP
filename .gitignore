@@ -3,6 +3,7 @@ UserSettings/
 .vscode/
 Logs/
 obj/
+Packages/
 *.sln
 *.csproj
 *.meta
